@@ -2,11 +2,13 @@
 #### By: Jose Antonio Soto Villacampa
 ---
 
+![Kilterboard problem example](images/kb.png)
+
 ### 📖 Executive summary
 
 #### Project overview and goals
 
-This project investigates whether machine learning techniques can accurately predict the difficulty grades of indoor bouldering problems on a Kilterboard. Using data sourced from the open Kilterboard API and Climbdex library—encompassing over 20,000 climbing problems with metadata on angles, hold types, ascents, and average difficulty ratings—the study explores both regression and classification models to predict grades. By treating difficulty as a continuous value (regression) or grouping it into categories (classification), this research evaluates the effectiveness of various machine learning approaches.
+This project investigates whether machine learning techniques can accurately predict the difficulty grades of indoor bouldering problems on a Kilterboard. Using data sourced from [Kilterboard app](https://kilterboard.app) API and [Climbdex library](https://climbdex.com), encompassing over 20,000 climbing problems with metadata on angles, hold types, ascents, and average difficulty ratings. The study explores both __regression__ and __classification__ models to predict grades. By treating difficulty as a continuous value (_regression_) or grouping it into categories (_classification_), this research evaluates the effectiveness of various machine learning approaches.
 
 #### Significance
 
