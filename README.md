@@ -1,37 +1,93 @@
-## 🧗 Climbing the Data Wall: A Machine Learning Approach to Bouldering Difficulty Prediction ##
-### By: Jose Antonio Soto Villacampa ###
+## 🧗 Climbing the Data Wall: A Machine Learning Approach to Bouldering Difficulty Prediction 
+#### By: Jose Antonio Soto Villacampa
 ---
 
 ### 📖 Executive summary
 
-**Project overview and goals** 
+#### Project overview and goals
 
 This project investigates whether machine learning techniques can accurately predict the difficulty grades of indoor bouldering problems on a Kilterboard. Using data sourced from the open Kilterboard API and Climbdex library—encompassing over 20,000 climbing problems with metadata on angles, hold types, ascents, and average difficulty ratings—the study explores both regression and classification models to predict grades. By treating difficulty as a continuous value (regression) or grouping it into categories (classification), this research evaluates the effectiveness of various machine learning approaches.
 
-**Significance** 
+#### Significance
 
 Grading inconsistencies on Kilterboards can hinder climbers' training, mislead them about their skill levels, and increase the risk of overtraining or injury. An objective, data-driven grading system could improve grade consistency, reliability, and overall training outcomes. Additionally, such a system can serve as a valuable tool for route setters to verify and fine-tune problem difficulty, enhancing the Kilterboard experience for climbers worldwide.
-
----
-
-**Findings:** 
-
-![Model Comparison](images/model_accuracy_comparison.png)
-
-
-**📈 Results and conclusion:** 
-
-**🔮 Future research and development:** 
-
-* Explore neural network approaches for feature extraction and prediction accuracy improvements.
-
-**Next steps and recommendations:** 
 
 ---
 
 ### 🔍 Research Question
 
 Can we accurately predict the difficulty grade of indoor bouldering problems on a Kilterboard using machine learning techniques, based on the spatial configuration of holds, angles, and user feedback?
+
+---
+
+### Findings
+
+#### Model Performance Hierarchy
+- Random Forest Regression emerged as the best performing model overall:
+    * Highest R-squared value (0.73)
+    * Best accuracy within ±1 V-grade (76.40%)
+    * Best accuracy within ±2 V-grades (91.90%)
+- K-Nearest Neighbors performed best among classification models:
+    * Highest exact grade match accuracy (41.17%)
+    * Strong performance in ±1 and ±2 grade predictions
+
+#### Regression vs. Classification Approaches
+- Regression models showed superior performance in predicting grades within ranges
+- Classification models performed better at exact grade matches
+
+#### Grade Prediction Reliability
+- All models showed significantly better performance when allowing for a ±1 or ±2 grade margin
+- This aligns with real-world grade subjectivity where climbers often disagree within 1-2 grades
+- Most reliable predictions were achieved within a ±2 grade range (80-91% accuracy)
+
+
+![Model Comparison](images/model_accuracy_comparison.png)
+
+---
+
+### 📈 Results and conclusion 
+
+#### Primary Conclusions
+- Machine learning can effectively predict climbing grades with meaningful accuracy
+- Random Forest Regression provides the most reliable predictions, especially within grade ranges
+- The models' performance aligns well with real-world grade variation among climbers
+
+#### Practical Applications
+- The models can serve as effective tools for:
+    * Initial grade suggestions for new problems
+    * Identifying potentially misgraded problems
+    * Providing consistent grading benchmarks
+    * Supporting route setters in grade assignments
+
+#### Limitations
+- Perfect grade prediction remains challenging due to:
+    * Inherent subjectivity in climbing grades
+    * Variations in climber experience and style
+    * Complex interactions between hold positions and angles
+
+#### Achievement of Project Goals
+- Successfully demonstrated the feasibility of machine learning for climbing grade prediction
+- Provided quantifiable accuracy metrics for different prediction approaches
+- Established a foundation for automated grading assistance systems
+
+---
+
+### 🔮 Future research and development
+
+* Explore neural network or other more advanced ML approaches for feature extraction and prediction accuracy improvements.
+* Investigate attention mechanisms to better understand hold relationships
+* Create features that capture climbing movement patterns and sequences
+* Incorporate additional climbing metrics like:
+    - Hold depth and texture information
+    - Dynamic vs. static move requirements
+    - Climber height and reach data
+* Collect and integrate video analysis data of successful ascents
+
+#### Next steps and recommendations
+* Optimize model performance for real-time predictions
+* Continue tweaking and tuning model hyperparameters to achieve better prediction accuracy.
+
+---
 
 ### Data Sources
 
@@ -55,38 +111,150 @@ The dataset was scraped from:
 * Processed data is stored in a `.parquet` format for efficiency: [data/climbs_data.parquet](data/climbs_data.parquet).
 * The transformation script is included in [scripts/jsontransformer.py](scripts/jsontransformer.py).
 
-TODO: Add here some details on the parquet data
+
+***Data characteristics:***
+- Total records: 35,878 climbing problems
+- Features: 482 columns including:
+  * UUID (unique identifier)
+  * Angle (0-70 degrees)
+  * Difficulty average (10-33)
+  * Boulder grade (V0-V14)
+  * Ascensionist count (1-1547)
+  * LED positions (477 possible positions)
 
 **Preprocessing:**
 
-TODO: Add more details here on the preprocessing done before passing it to the models
+1. Removed unnecessary columns (UUID)
+2. Filtered problems to include only those with 3 or more ascensionists for grade reliability
+3. Converted boulder grades to numeric values (V0=0, V1=1, etc.)
+4. One-hot encoded categorical variables (hold types)
+5. Applied RobustScaler to numeric features
+6. Implemented feature selection using SelectKBest
 
 **Final Dataset:** 
 
-TODO: Add more details here about the actual dataset at the end
+- Total records: 14,320 climbing problems (after filtering for 3+ ascensionists)
+- Features: 1,833 columns including:
+  * Numeric features:
+    - Angle (0-70 degrees, scaled using RobustScaler)
+  * Categorical features (one-hot encoded):
+    - 1,832 binary columns representing LED positions and their possible states:
+      * FEET-ONLY
+      * MIDDLE
+      * NOT_USED
+      * START
+      * FINISH
+- Target variables:
+  * For regression: difficulty_average (continuous value)
+  * For classification: grade_numeric (0-14, corresponding to V0-V14)
+- Memory usage: 25.2 MB
+- Data characteristics:
+  * Angle distribution:
+    - Mean: 37.50°
+    - Standard deviation: 13.25°
+    - Range: 0° to 70°
 
 ---
 
 ### ☑️ Methodology
 
+This project followed a comprehensive machine learning approach, implementing both regression and classification models to predict climbing grades. The methodology consisted of several key phases: data preprocessing, model selection, training, and evaluation. I used a train-test split of 80-20 to ensure robust model validation, and implemented cross-validation during training to prevent overfitting. Feature selection was performed using `SelectKBest` to identify the most relevant features for prediction, and hyperparameter tuning was conducted through `GridSearchCV` to optimize model performance.
+
+The evaluation metrics were carefully chosen to reflect real-world climbing grade assessment: besides traditional metrics like `MSE` and `R-squared` for regression models and `accuracy` for classification models, I included custom metrics to measure predictions within `±1` and `±2` grades, acknowledging the inherent subjectivity in climbing grades.
+
 #### Regression Models Used
 
-**Ridge Regression:**
+1. Ridge Regression:
+    - Pipeline including RobustScaler and SelectKBest feature selection
+    - Hyperparameters tuned:
+        * Feature selection `k: [100, 200, 300]`
+        * Alpha: `[0.1, 1.0, 10.0, 100.0]`
+    - Best parameters: `k=300, alpha=1.0`
 
-**Random Forest Regression:**
+2. Random Forest Regression:
+    - Pipeline with preprocessor
+    - Hyperparameters tuned:
+        * n_estimators: `[100]`
+        * max_depth: `[None, 20]`
+        * min_samples_split: `[2]`
+    - Best parameters: `max_depth=None, min_samples_split=2, n_estimators=100`
 
 #### Classification Models Used
 
-**Logistic Regression Model:**
+1. Logistic Regression Model:
+    - Multi-class one-vs-rest strategy
+    - Hyperparameters tuned:
+        * `C: [1.0]`
+        * `max_iter: [1000]`
+    - Implemented with `SAGA` solver and parallel processing
 
-**K-Nearest Neighbors:**
+2. K-Nearest Neighbors:
+    - Pipeline including feature selection
+    - Hyperparameters tuned:
+        * Feature selection `k: [400, 800, 1000]`
+        * n_neighbors: `[6, 7, 8, 9, 10]`
+        * weights: `['uniform', 'distance']`
+    - Best parameters: `n_neighbors=9, weights='distance', feature_selection_k=1000`
 
-**SVM:** 
-
+3. SVM:
+    - RBF kernel
+    - Hyperparameters tuned:
+        * `Feature selection k: [800]`
+        * `C: [10.0]`
+        * `gamma: ['scale']`
+    - Best parameters: `C=10.0, gamma='scale', k=800`
 ---
 
 ### 📊 Model evaluation and results 
 
+#### Regression Models Performance:
+1. Ridge Regression:
+   - MSE: 6.52
+   - R-squared: 0.62
+   - Grade prediction accuracy:
+     * Exact: 28.14%
+     * Within ±1: 67.28%
+     * Within ±2: 87.36%
+
+![Ridge Predicted vs Actual](images/ridge_pred_vs_actual.png)
+
+2. Random Forest Regression:
+   - MSE: 4.56
+   - R-squared: 0.73
+   - Grade prediction accuracy:
+     * Exact: 37.08%
+     * Within ±1: 76.40%
+     * Within ±2: 91.90%
+
+![Random Forest Predicted vs Actual](images/rf_pred_vs_actual.png)
+
+#### Classification Models Performance:
+1. Logistic Regression:
+   - Overall accuracy: 33.00%
+   - Grade prediction accuracy:
+     * Exact: 33.00%
+     * Within ±1: 63.13%
+     * Within ±2: 80.80%
+
+![Logistic Regression Predicted vs Actual](images/log_reg_pred_vs_actual.png)
+
+2. K-Nearest Neighbors:
+   - Overall accuracy: 41.17%
+   - Grade prediction accuracy:
+     * Exact: 41.17%
+     * Within ±1: 70.22%
+     * Within ±2: 84.36%
+
+![K-Nearest Neighbors Predicted vs Actual](images/knn_pred_vs_actual.png)
+
+3. SVM:
+   - Overall accuracy: 36.49%
+   - Grade prediction accuracy:
+     * Exact: 36.49%
+     * Within ±1: 67.63%
+     * Within ±2: 82.37%
+
+![SVM Predicted vs Actual](images/svm_pred_vs_actual.png)
 ---
 
 ### 💾 Project Resources
@@ -100,5 +268,5 @@ TODO: Add more details here about the actual dataset at the end
 
 ### 🪪 Contact and Further Information
 
-* [LinkedIn](https://www.linkedin.com/in/joseantoniosoto/)
+* 🔗[LinkedIn Profile](https://www.linkedin.com/in/joseantoniosoto/)
 
