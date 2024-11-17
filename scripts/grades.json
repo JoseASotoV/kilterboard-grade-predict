@@ -1,0 +1,236 @@
+[
+    {
+        "difficulty": 1,
+        "boulder_name": "1a/V0",
+        "route_name": "2b/5.1",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 2,
+        "boulder_name": "1b/V0",
+        "route_name": "2c/5.2",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 3,
+        "boulder_name": "1c/V0",
+        "route_name": "3a/5.3",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 4,
+        "boulder_name": "2a/V0",
+        "route_name": "3b/5.3",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 5,
+        "boulder_name": "2b/V0",
+        "route_name": "3c/5.4",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 6,
+        "boulder_name": "2c/V0",
+        "route_name": "4a/5.5",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 7,
+        "boulder_name": "3a/V0",
+        "route_name": "4b/5.6",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 8,
+        "boulder_name": "3b/V0",
+        "route_name": "4c/5.7",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 9,
+        "boulder_name": "3c/V0",
+        "route_name": "5a/5.8",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 10,
+        "boulder_name": "4a/V0",
+        "route_name": "5b/5.9",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 11,
+        "boulder_name": "4b/V0",
+        "route_name": "5c/5.10a",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 12,
+        "boulder_name": "4c/V0",
+        "route_name": "6a/5.10b",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 13,
+        "boulder_name": "5a/V1",
+        "route_name": "6a+/5.10c",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 14,
+        "boulder_name": "5b/V1",
+        "route_name": "6b/5.10d",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 15,
+        "boulder_name": "5c/V2",
+        "route_name": "6b+/5.11a",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 16,
+        "boulder_name": "6a/V3",
+        "route_name": "6c/5.11b",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 17,
+        "boulder_name": "6a+/V3",
+        "route_name": "6c+/5.11c",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 18,
+        "boulder_name": "6b/V4",
+        "route_name": "7a/5.11d",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 19,
+        "boulder_name": "6b+/V4",
+        "route_name": "7a+/5.12a",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 20,
+        "boulder_name": "6c/V5",
+        "route_name": "7b/5.12b",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 21,
+        "boulder_name": "6c+/V5",
+        "route_name": "7b+/5.12c",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 22,
+        "boulder_name": "7a/V6",
+        "route_name": "7c/5.12d",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 23,
+        "boulder_name": "7a+/V7",
+        "route_name": "7c+/5.13a",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 24,
+        "boulder_name": "7b/V8",
+        "route_name": "8a/5.13b",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 25,
+        "boulder_name": "7b+/V8",
+        "route_name": "8a+/5.13c",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 26,
+        "boulder_name": "7c/V9",
+        "route_name": "8b/5.13d",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 27,
+        "boulder_name": "7c+/V10",
+        "route_name": "8b+/5.14a",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 28,
+        "boulder_name": "8a/V11",
+        "route_name": "8c/5.14b",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 29,
+        "boulder_name": "8a+/V12",
+        "route_name": "8c+/5.14c",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 30,
+        "boulder_name": "8b/V13",
+        "route_name": "9a/5.14d",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 31,
+        "boulder_name": "8b+/V14",
+        "route_name": "9a+/5.15a",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 32,
+        "boulder_name": "8c/V15",
+        "route_name": "9b/5.15b",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 33,
+        "boulder_name": "8c+/V16",
+        "route_name": "9b+/5.15c",
+        "is_listed": 1
+    },
+    {
+        "difficulty": 34,
+        "boulder_name": "9a/V17",
+        "route_name": "9c/5.15d",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 35,
+        "boulder_name": "9a+/V18",
+        "route_name": "9c+/5.16a",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 36,
+        "boulder_name": "9b/V19",
+        "route_name": "10a/5.16b",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 37,
+        "boulder_name": "9b+/V20",
+        "route_name": "10a+/5.16c",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 38,
+        "boulder_name": "9c/V21",
+        "route_name": "10b/5.16d",
+        "is_listed": 0
+    },
+    {
+        "difficulty": 39,
+        "boulder_name": "9c+/V22",
+        "route_name": "10b+/5.17a",
+        "is_listed": 0
+    }
+]
