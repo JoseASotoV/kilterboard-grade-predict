@@ -24,6 +24,8 @@ Can we accurately predict the difficulty grade of indoor bouldering problems on 
 
 ### Findings
 
+The analysis of different machine learning approaches to predict climbing grades revealed compelling insights into both the capabilities and limitations of automated grading systems. Through extensive testing of multiple models, I found that machine learning can effectively capture many of the subtle factors that contribute to climbing difficulty, achieving prediction accuracies that align well with human-grade variations. The results demonstrate that while perfect grade prediction remains challenging due to the inherent subjectivity of climbing grades, machine learning models can provide valuable, consistent grading suggestions that could benefit both route setters and climbers.
+
 #### Model Performance Hierarchy
 - Random Forest Regression emerged as the best performing model overall:
     * Highest R-squared value (0.73)
@@ -218,8 +220,6 @@ The evaluation metrics were carefully chosen to reflect real-world climbing grad
      * Within ±1: 67.28%
      * Within ±2: 87.36%
 
-![Ridge Predicted vs Actual](images/ridge_pred_vs_actual.png)
-
 2. Random Forest Regression:
    - MSE: 4.56
    - R-squared: 0.73
@@ -227,8 +227,6 @@ The evaluation metrics were carefully chosen to reflect real-world climbing grad
      * Exact: 37.08%
      * Within ±1: 76.40%
      * Within ±2: 91.90%
-
-![Random Forest Predicted vs Actual](images/rf_pred_vs_actual.png)
 
 #### Classification Models Performance:
 1. Logistic Regression:
@@ -238,16 +236,12 @@ The evaluation metrics were carefully chosen to reflect real-world climbing grad
      * Within ±1: 63.13%
      * Within ±2: 80.80%
 
-![Logistic Regression Predicted vs Actual](images/log_reg_pred_vs_actual.png)
-
 2. K-Nearest Neighbors:
    - Overall accuracy: 41.17%
    - Grade prediction accuracy:
      * Exact: 41.17%
      * Within ±1: 70.22%
      * Within ±2: 84.36%
-
-![K-Nearest Neighbors Predicted vs Actual](images/knn_pred_vs_actual.png)
 
 3. SVM:
    - Overall accuracy: 36.49%
@@ -256,7 +250,56 @@ The evaluation metrics were carefully chosen to reflect real-world climbing grad
      * Within ±1: 67.63%
      * Within ±2: 82.37%
 
+#### Model Prediction Visualizations
+
+Each scatter plot shows the relationship between predicted and actual difficulty grades:
+- The diagonal red line represents perfect predictions
+- Points above the line indicate overestimation
+- Points below the line indicate underestimation
+
+**Ridge Regression:**
+- The spread of points shows prediction variance
+- Dense clustering around the diagonal indicates better prediction accuracy
+- Notable spread in middle grades (V4-V8) suggests more prediction uncertainty in this range
+
+![Ridge Predicted vs Actual](images/ridge_pred_vs_actual.png)
+
+**Random Forest Regression:**
+- Tighter clustering around the diagonal compared to Ridge Regression
+- More consistent predictions across grade ranges
+- Less extreme outliers, particularly in higher grades
+- Better performance in middle grades (V4-V8)
+- Some prediction bias towards the mean in extreme grades
+
+![Random Forest Predicted vs Actual](images/rf_pred_vs_actual.png)
+
+**Logistic Regression:**
+- Discrete prediction pattern due to classification approach
+- Strong diagonal trend indicating general accuracy
+- Notable vertical banding showing classification boundaries
+- Some grade ranges show better prediction consistency than others
+- Higher grades show more prediction scatter
+
+![Logistic Regression Predicted vs Actual](images/log_reg_pred_vs_actual.png)
+
+**K-Nearest Neighbors:**
+- Clear step-like pattern due to discrete classification
+- Good prediction density along the diagonal
+- Fewer extreme misclassifications
+- Balanced performance across grade ranges
+- Some tendency to predict common grades more frequently
+
+![K-Nearest Neighbors Predicted vs Actual](images/knn_pred_vs_actual.png)
+
+**SVM:**
+- Sharp classification boundaries visible
+- More conservative in extreme grade predictions
+- Strong central tendency in predictions
+- Clear separation between grade clusters
+- Some difficulty with rare grades
+
 ![SVM Predicted vs Actual](images/svm_pred_vs_actual.png)
+
 ---
 
 ### 💾 Project Resources
